@@ -17,6 +17,7 @@ const int SWING_SPEED = 40;
 ///
 // Constants
 ///
+
 void default_constants() {
   // P, I, D, and Start I
   chassis.pid_drive_constants_set(20.0, 0.0, 100.0);         // Fwd/rev constants, used for odom and non odom motions
