@@ -9,6 +9,7 @@
 // https://ez-robotics.github.io/EZ-Template/
 /////
 
+
 // These are out of 127
 const int DRIVE_SPEED = 60;
 const int TURN_SPEED = 60;
@@ -19,11 +20,10 @@ const int SWING_SPEED = 40;
 ///
 void default_constants() {
   // P, I, D, and Start I
-  //chassis.drive_imu_scaler_set(0.99);
-   chassis.pid_drive_constants_set(20.0, 0.0, 100.0);         // Fwd/rev constants, used for odom and non odom motions
+  chassis.pid_drive_constants_set(20.0, 0.0, 100.0);         // Fwd/rev constants, used for odom and non odom motions
   chassis.pid_heading_constants_set(11.0, 0.0, 20.0);        // Holds the robot straight while going forward without odom
-  chassis.pid_turn_constants_set(2.0, 0.07, 15.0, 15.0);     // Turn in place constants
-  chassis.pid_swing_constants_set(4.0, 0.0, 0.0);           // Swing constants
+  chassis.pid_turn_constants_set(3.0, 0.03, 15.0, 15.0);     // Turn in place constants
+  chassis.pid_swing_constants_set(6.0, 0.0, 0.0);           // Swing constants
   chassis.pid_odom_angular_constants_set(6.5, 0.0, 52.5);    // Angular control for odom motions
   chassis.pid_odom_boomerang_constants_set(5.8, 0.0, 32.5);  // Angular control for boomerang motions
 
@@ -40,7 +40,6 @@ void default_constants() {
   chassis.pid_swing_chain_constant_set(5_deg);
   chassis.pid_drive_chain_constant_set(3_in);
 
-
   // Slew constants
   chassis.slew_turn_constants_set(3_deg, 70);
   chassis.slew_drive_constants_set(3_in, 70);
@@ -56,6 +55,8 @@ void default_constants() {
 
   chassis.pid_angle_behavior_set(ez::shortest);  // Changes the default behavior for turning, this defaults it to the shortest path there
 }
+
+
 
 
 
@@ -291,7 +292,7 @@ void autonomo15odom()
 
     //se mete al cargador
 
-    chassis.pid_odom_set(18.2_in, 50, true);
+    chassis.pid_odom_set(18.32_in, 50, true);//estaba en 18.2
     chassis.pid_wait();
 
     pros::delay(2800);
@@ -325,7 +326,7 @@ void autonomo15odom()
     //despues del giro subir estructura
     lift1.extend();
     lift2.extend();
-    chassis.pid_odom_set(16.2_in, 50, true);
+    chassis.pid_odom_set(16.32_in, 50, true); //estaba en 16.2
     chassis.pid_wait();
 
     tapa.extend();
@@ -431,7 +432,7 @@ void autonomo15() {
 
     //Gira para acomodarse 
 
-chassis.pid_swing_set(ez::LEFT_SWING, 90_deg, 50);
+chassis.pid_swing_set(ez::LEFT_SWING, 91_deg, 50);
 chassis.pid_wait();
 
     //Despues del giro, subimos la estructura
